@@ -1,0 +1,74 @@
+{% extends 'templates/layout/layout.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="message">
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="note-section">
+        <h3>Note list</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                {% for note in notes %}
+                    <tr>
+                        <th scope="row">{{ note.id }}</th>
+                        <td>{{ note.title }}</td>
+                        <td>{{ note.status }}</td>
+                        <td>
+                            <a href="{% url 'viewnote' note.id %}" class="btn btn-link">View</a>
+                            <a href="{% url 'editnote' note.id %}" class="btn btn-link">Edit</a>
+                            <a href="#noteDelete" class="btn btn-link" class="trigger-btn" data-toggle="modal">Delete</a>
+                        </td>
+                    </tr>
+
+                    <!-- Modal Delete -->
+                    <div id="noteDelete" class="modal fade">
+                        <div class="modal-dialog modal-confirm">
+                            <div class="modal-content">
+                                <div class="modal-header flex-column">
+                                    <div class="icon-box">
+                                        <i class="material-icons">&#xE5CD;</i>
+                                    </div>						
+                                    <h4 class="modal-title w-100">Are you sure?</h4>	
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do you really want to delete these records? This process cannot be undone.</p>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <form method="POST" action="{% url 'deletenote' note.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+    
+            </tbody>
+        </table>
+    </div>
+
+
+      
+
+{% endblock %}

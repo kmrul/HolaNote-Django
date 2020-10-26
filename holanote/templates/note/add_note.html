@@ -1,0 +1,54 @@
+{% extends 'templates/layout/layout.html' %}
+
+{% block title %}
+    <title>Add New Note | HolaNote</title>
+{% endblock %}
+
+{% block body %}
+    <div class="note-section">
+        <div class="message">
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        <h3>Add New List</h3>
+        <div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input id="title" type="text" name="title" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Notes</label>
+                            <textarea id="content" type="text" name="content" class="form-control" rows="8"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            
+                            <input type="checkbox" id="is_public" name="is_public" class="" />
+                            Is Public
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="status">
+                                <option value="published" selected>Published</option>
+                                <option value="draft">Draft</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Save"/>
+                            <a href="/note-list" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

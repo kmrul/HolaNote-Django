@@ -1,0 +1,54 @@
+{% extends 'templates/layout/layout.html' %}
+
+{% block title %}
+    <title>Edit Note | HolaNote</title>
+{% endblock %}
+
+{% block body %}
+    <div class="note-section">
+        <div class="message">
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        <h3>Edit Note</h3>
+        <div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input id="title" type="text" name="title" class="form-control" value="{{note.title}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Notes</label>
+                            <textarea id="content" type="text" name="content" class="form-control" rows="8">{{note.content}}</textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            
+                            <input type="checkbox" id="is_public" name="is_public" class="" {% if note.is_public %} checked {% endif %} />
+                            Is Public
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="status">
+                                <option value="published" {% if note.status == 'published' %} selected {% endif %} >Published</option>
+                                <option value="draft" {% if note.status == 'draft' %} selected {% endif %} >Draft</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Update"/>
+                            <a href="{% url 'notelist' %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

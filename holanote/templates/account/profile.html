@@ -1,0 +1,45 @@
+{% extends 'templates/layout/layout.html' %}
+
+{% block title %}
+    <title>Profile | HolaNote</title>
+{% endblock %}
+
+{% block body %}
+    <div class="profile-section note-section">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{%url 'dashboard' %}" class="btn btn-info"> <i class="fa fa-arrow-left"></i> Back to Dashboard</a>
+                        <hr/>
+                        <div class="profile-img">
+                            <img src="{{ request.user.profile.profile_pic.url }}" class="img-fluid"/>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="text-center">Account Setting</h3>
+                        <hr/>
+                      <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <input class="btn btn-primary" type="submit" value="Update"/>
+                      </form>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
