@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-from .enums import NoteStatusChoice
+from .note_enums import NoteStatusChoice
 
 class Note(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
