@@ -1,4 +1,4 @@
-## HolaNote
+# HolaNote
 A user based note who can note public and privately.
 
 # Features
