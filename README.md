@@ -1,6 +1,6 @@
 # HolaNote
 
-## technologes: Djanog, Postgresql,Docker
+## Technologes: Djanog, Postgresql, Docker
 
 sudo docker-compose run web django-admin startproject mysite .
 
