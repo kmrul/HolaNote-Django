@@ -1,3 +1,7 @@
+# HolaNote
+
+## technologes: Djanog, Postgresql,Docker
+
 sudo docker-compose run web django-admin startproject mysite .
 
 sudo chown -R $USER:$USER .
