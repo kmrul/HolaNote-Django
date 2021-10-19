@@ -10,6 +10,15 @@ A user based note who can note public and privately.
 - Set his note on public or private
 
 
+# Create Database and Database Users
+- sudo su - postgres
+- psql
+- CREATE DATABASE database_holanote;
+- CREATE USER holanote_role WITH PASSWORD 'holanote_password';
+- GRANT ALL PRIVILEGES ON DATABASE database_holanote TO holanote_role;
+- \q
+- exit
+
 
 ## Technologes: 
 - Djanog, 

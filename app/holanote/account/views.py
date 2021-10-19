@@ -22,9 +22,9 @@ def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
+        print("username:", username, "password:", password)
         user = authenticate(username=username, password=password)
-
+        print("user:", user)
         if user is not None:
             auth_login(request, user)
             return redirect('/dashboard')
@@ -46,10 +46,8 @@ def register(request):
             user.is_active = False
             user.save()
 
-            group = Group.objects.get(name='customer')
-            user.groups.add(group)
-
-            
+            # group = Group.objects.get(name='customer')
+            # user.groups.add(group)
 
             ## send mail
             send_user_activation_mail(request, user)

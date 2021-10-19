@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'holanote.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'database_holanote',
         'USER': 'holanote_role',
         'PASSWORD': 'holanote_password',
-        'HOST': 'database_holanote',
+        'HOST': 'localhost',
         'PORT': 5432
     }
 }
